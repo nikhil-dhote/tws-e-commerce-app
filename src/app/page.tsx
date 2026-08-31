@@ -1,9 +1,17 @@
+import dynamic from "next/dynamic";
+
 import BannerSlider from "@/components/BannerSlider";
 import BekaryCategories from "@/components/BekaryCategories";
 import BooksCategory from "@/components/BooksCategory";
 import FeaturedProducts from "@/components/FeaturedProducts";
 import ShopCategories from "@/components/ShopCategories";
-import HeroSlider from "@/components/heros/HeroSlider";
+
+const HeroSlider = dynamic(
+  () => import("@/components/heros/HeroSlider"),
+  {
+    ssr: false,
+  }
+);
 
 const heroImages = [
   {
