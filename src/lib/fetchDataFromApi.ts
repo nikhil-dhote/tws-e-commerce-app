@@ -17,8 +17,8 @@ export const axiosInstance = axios.create({
 // Add request interceptor to include token from cookie
 axiosInstance.interceptors.request.use(
   async (config) => {
-    // Get token from cookie
-    const cookies = document.cookie.split(';');
+    // Get token from cookie (only available in the browser)
+    const cookies = typeof document !== 'undefined' ? document.cookie.split(';') : [];
     const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
     const token = tokenCookie ? tokenCookie.split('=')[1] : null;
 
@@ -37,8 +37,8 @@ axiosInstance.interceptors.request.use(
 const fetchData = {
   get: async (url: string, params = {}) => {
     try {
-      // Get token from cookie
-      const cookies = document.cookie.split(';');
+      // Get token from cookie (only available in the browser)
+      const cookies = typeof document !== 'undefined' ? document.cookie.split(';') : [];
       const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
       const token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
 
@@ -57,8 +57,8 @@ const fetchData = {
   },
   post: async (url: string, data = {}) => {
     try {
-      // Get token from cookie
-      const cookies = document.cookie.split(';');
+      // Get token from cookie (only available in the browser)
+      const cookies = typeof document !== 'undefined' ? document.cookie.split(';') : [];
       const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('token='));
       const token = tokenCookie ? decodeURIComponent(tokenCookie.split('=')[1].trim()) : null;
 
