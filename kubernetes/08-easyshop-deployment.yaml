@@ -25,6 +25,8 @@ spec:
             - secretRef:
                 name: easyshop-secrets
           env:
+            - name: HOSTNAME
+              value: "0.0.0.0"          
             - name: NEXTAUTH_URL
               valueFrom:
                 configMapKeyRef:
